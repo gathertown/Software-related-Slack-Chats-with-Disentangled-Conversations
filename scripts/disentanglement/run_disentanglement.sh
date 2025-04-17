@@ -2,7 +2,16 @@
 
 set -e
 
-inputs=($(ls -d "$PWD/../../../prepare-thread-dataset/slack_output/"*))
+# Error out if no arguments are provided
+if [ $# -eq 0 ]; then
+    echo "Error: No input files provided"
+    echo "Usage: $0 file1 [file2 ...]"
+    echo "Example: $0 \$(ls -d \"\$PWD/../../../prepare-thread-dataset/slack_output/\"*)"
+    exit 1
+fi
+
+# Use command-line arguments
+inputs=("$@")
 
 #in_unigrams='elsner-charniak-08-mod/data/linux-unigrams.dump'
 in_unigrams='corpora/unigram.txt'
