@@ -32,9 +32,9 @@ export PATH=$PATH:$PWD/elsner-charniak-08-mod/megam_0.92
 
 for ((i=0; i<${#inputs[@]}; i++))
 do 
-	filename=$(basename ${inputs[$i]})
+	filename=$(basename "${inputs[$i]}")
 	echo "*** slack-specific preprocessing (${inputs[$i]}) into ${filename}.pre"
-	python3 preprocessing/preprocessChat.py -o ${filename}.pre -i ${inputs[$i]}
+	python3 preprocessing/preprocessChat.py -o ${filename}.pre -i "${inputs[$i]}"
 
 	echo '*** extracting features'
 	rm -fR ${filename}.dir
@@ -49,6 +49,5 @@ do
 	python2.7 elsner-charniak-08-mod/model/greedy.py ${filename}.pre ${filename}.dir/$max_sec/$predictions_file_name ${filename}.dir/$max_sec/devkeys > ${filename}.dnt
 
 	echo '*** reverting preprocessing'
-	python3 postprocessing/revert_preprocessing.py ${filename}.dnt ${inputs[$i]} ${filename}.out
-	exit 0
+	python3 postprocessing/revert_preprocessing.py ${filename}.dnt "${inputs[$i]}" ${filename}.out
 done	
