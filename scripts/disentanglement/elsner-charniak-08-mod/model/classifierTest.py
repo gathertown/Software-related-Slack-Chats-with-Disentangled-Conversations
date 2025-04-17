@@ -13,7 +13,7 @@ from waterworks.Processes import bettersystem
 import os
 
 dirname = os.path.dirname(os.path.abspath(__file__))
-megam = os.path.join(dirname, "../../elsner-charniak-08/megam_0.92/megam")
+megam = os.path.join(dirname, "../../elsner-charniak-08-mod/megam_0.92/megam")
 
 def lastLine(io):
     string = io.getvalue()
